@@ -1,4 +1,9 @@
 FROM php:7.1-fpm
+
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && apt-get install -y --no-install-recommends apt-utils \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -27,5 +32,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && apt-get install -y zlib1g-dev libicu-dev g++ \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
+    && docker-php-ext-enable redis \
     && cd /tmp \
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
