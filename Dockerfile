@@ -27,6 +27,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && docker-php-ext-install json \
     && docker-php-ext-install xsl \
     && docker-php-ext-install zip \
+    && docker-php-ext-install gmp \
     && docker-php-ext-install opcache \
     && apt-get install -y zlib1g-dev libicu-dev g++ \
     && docker-php-ext-configure intl \
