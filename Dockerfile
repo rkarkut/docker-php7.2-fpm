@@ -1,8 +1,7 @@
 FROM php:7.1-fpm
 
 RUN pecl install -o -f redis xdebug \
-&&  rm -rf /tmp/pear \
-&&  docker-php-ext-enable redis
+&&  rm -rf /tmp/pear
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && apt-get install -y --no-install-recommends apt-utils \
@@ -34,5 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && docker-php-ext-install intl \
     && docker-php-ext-enable redis \
     && docker-php-ext-enable xdebug \
-    && cd /tmp \
+    && curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer \
+    && cd /tmp
+
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
