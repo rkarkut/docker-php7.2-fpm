@@ -41,6 +41,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 RUN apt-get -y install cron
 
