@@ -1,2 +1,2 @@
-# docker-php7.1-fpm
+# docker-php7.2-fpm
 PHP 7.1 FPM image for Docker
